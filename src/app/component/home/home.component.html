@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="Ellipse65"></div>
+    <div class="Ellipse66"></div>
+    <div class="Ellipse67"></div>
+    <div class="Ellipse68"></div>
+
+
+    <div class="d-flex justify-content-between">
+      <p class="p1-s">شهر يونيو ,2022</p>
+      <div class="p-s">
+        <p>التقويم</p>
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+
+    <div class="row gx-5 mt-5">
+      <div class="col-xl-3 col-md-12 ">
+        <ejs-calendar  align="right" dir="rtl" (change)="chanege($event)"  locale='ar'  ></ejs-calendar>
+    </div>
+
+    <div class="col-9 "  align="right" dir="rtl"  >
+      <div class="row gx-2 ">
+        <div class="col-md-2 mx-2 pos mt-2"  *ngFor="let cliend of cliender">
+          <div class="">
+            <p class="p pm-2">{{cliend.daynumber}} {{cliend.dayname}} </p>
+            <p class="p1 ms-3"> {{cliend.taskcount}} {{cliend.task}} </p>
+          </div>
+        </div>
+        <div class="col-md-2 mx-2 pos2 mt-2" [ngClass]="{'rec17': i==0   || i==2 || i==7  || i==9 || i==14 ,
+                                                            'rec27':i==4 || i==6 || i==11 || i==13,
+                                                            'rec18':i==1 || i==8 || i==15,
+                                                            'rec22':i==5 || i==12,
+                                                            'rec20':i==3 || i==10  }"  *ngFor="let cliend of cliender2 ; let i = index">
+          <div class="">
+            <p class="p pm-2">{{cliend.daynumber}} {{cliend.dayname}} </p>
+            <p class="p1 ms-3"> {{cliend.taskcount}} {{cliend.task}} </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="mt-5" align="right" dir="rtl" (ngSubmit)="submitregistire(registerform)" action="" [formGroup]="registerform">
+      <div class="container">
+        <div class="row">
+          <div class="d-flex ">
+            <div class="col-md-2 one">
+              <label for=""  class="mb-3  po">من</label>
+              <input type="time" class="form-control tw" name="" id="" formControlName="from">
+            </div>
+              <div class=" col-md-2">
+                <label for="" class="mb-3">الى</label>
+                <input type="time" class="form-control tw" name="" id=""  formControlName="to">
+              </div>
+              <div class=" col-md-4 it ">
+                <label for="" class="mb-3">الجلسه</label>
+                <input type="text" class="form-control ts " name="" id=""  formControlName="session">
+                <img src="./././assets/Group 408.png" class="im" alt="">
+              </div>
+              <div class=" col-md-1 ms-3" >
+                <label for="" class="mb-3 ">عدد المقاعد</label>
+                <input type="number" class="form-control mx-2 tstt" name="" id=""  formControlName="numofseat" >
+              </div>
+              <div class=" col-md-1 me-4 ">
+              <label for="" class="">المستخدمين</label>
+              <input class=" col-md-1 tst   text-center d-flex justify-content-center align-items-center" value="49" formControlName="users">
+
+            </div>
+
+              <div class="bttn  me-5 text-center d-flex justify-content-center align-items-center">
+                <img src="./././assets/Path 747.png" class="ms-2" alt="">
+                <span>حذف</span>
+              </div>
+
+          </div>
+          <div class="d-flex mt-3 ">
+            <div class="col-md-2 two">
+              <input disabled type="time" class="form-control tw" name="" id="">
+            </div>
+              <div class=" col-md-2">
+                <input disabled type="time" class="form-control tw" name="" id="">
+              </div>
+              <div class=" col-md-4 it ">
+                <input disabled type="text" class="form-control ts " name="" id="">
+              </div>
+              <div class=" col-md-1 ms-3" >
+                <input disabled type="number" class="form-control mx-2 tstt" name="" id="">
+              </div>
+              <div class=" col-md-1 me-4 ">
+              <input disabled  class="form-control col-md-1 tst2   text-center d-flex justify-content-center align-items-center" >
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <button [disabled]="registerform.invalid" class="btn btn-primary  me-5 mt-5">تسجيل</button>
+
+    </form>
+    <p></p>
+    <table class="table caption-top table-responsive-sm " align="right" dir="rtl">
+      <thead>
+        <tr>
+          <th scope="col">اليوم</th>
+          <th scope="col">من</th>
+          <th scope="col">الى</th>
+          <th scope="col">الجلسه</th>
+          <th scope="col">عددالمقاعد</th>
+          <th scope="col">المستخدمين</th>
+          <th scope="col">حذف</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let y of session ; let i = index">
+          <td>{{M}}</td>
+          <td>{{y.from}}</td>
+          <td>{{y.to}}</td>
+          <td>{{y.session}}</td>
+          <td>{{y.numofseat}}</td>
+          <td>{{y.users}}</td>
+          <td> <button class="btn btn-outline-danger" (click)="ondelete(i)">حذف</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
